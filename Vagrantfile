@@ -19,6 +19,9 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "ubuntu/trusty64"
   config.ssh.forward_x11 = true
+  config.vm.provider "virtualbox" do |v|
+    v.customize ["modifyvm", :id, "--memory", "2048"]
+  end
 
 #  config.ssh.private_key_path = "~/.ssh/id_rsa"
 

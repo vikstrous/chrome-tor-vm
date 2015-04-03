@@ -9,6 +9,7 @@
 -A PREROUTING ! -i lo -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -j REDIRECT --to-ports 9040
 -A OUTPUT -o lo -j RETURN
 --ipv4 -A OUTPUT -d 192.168.0.0/16 -j RETURN
+--ipv4 -A OUTPUT -d 10.0.0.0/8 -j RETURN
 -A OUTPUT -m owner --uid-owner "debian-tor" -j RETURN
 -A OUTPUT -p udp -m udp --dport 53 -j REDIRECT --to-ports 5353
 -A OUTPUT -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -j REDIRECT --to-ports 9040
@@ -29,6 +30,7 @@ COMMIT
 --ipv6 -A INPUT -j REJECT
 --ipv4 -A OUTPUT -d 127.0.0.0/8 -j ACCEPT
 --ipv4 -A OUTPUT -d 192.168.0.0/16 -j ACCEPT
+--ipv4 -A OUTPUT -d 10.0.0.0/8 -j ACCEPT
 --ipv6 -A OUTPUT -d ::1/8 -j ACCEPT
 -A OUTPUT -p tcp --sport 22 -j ACCEPT
 -A OUTPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
